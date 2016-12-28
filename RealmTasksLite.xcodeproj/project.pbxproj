@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D3F48BA51E14300900B39E4B /* RealmTasksLite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RealmTasksLite.entitlements; sourceTree = "<group>"; };
 		D3FE45EE1E142CAB00AB16F6 /* RealmTasksLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmTasksLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3FE45F11E142CAB00AB16F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3FE45F31E142CAB00AB16F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +53,7 @@
 		D3FE45F01E142CAB00AB16F6 /* RealmTasksLite */ = {
 			isa = PBXGroup;
 			children = (
+				D3F48BA51E14300900B39E4B /* RealmTasksLite.entitlements */,
 				D3FE45F11E142CAB00AB16F6 /* AppDelegate.swift */,
 				D3FE45F31E142CAB00AB16F6 /* ViewController.swift */,
 				D3FE45F81E142CAB00AB16F6 /* Assets.xcassets */,
@@ -95,6 +97,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 48DP5ENKMR;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -247,6 +254,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RealmTasksLite/RealmTasksLite.entitlements;
 				DEVELOPMENT_TEAM = 48DP5ENKMR;
 				INFOPLIST_FILE = RealmTasksLite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -260,6 +268,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RealmTasksLite/RealmTasksLite.entitlements;
 				DEVELOPMENT_TEAM = 48DP5ENKMR;
 				INFOPLIST_FILE = RealmTasksLite/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
