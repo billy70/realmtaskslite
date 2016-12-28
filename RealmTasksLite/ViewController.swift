@@ -27,4 +27,13 @@ final class TaskList: Object {
 }
 
 class ViewController: UITableViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+    func setupUI() {
+        title = "My Tasks"
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
 }
