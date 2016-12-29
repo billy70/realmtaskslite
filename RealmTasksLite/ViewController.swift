@@ -5,6 +5,7 @@
 //  Created by William L. Marr III on 2016/12/28.
 //  Copyright © 2016 William L. Marr III. All rights reserved.
 //
+// swiftlint:disable variable_name force_try
 
 import UIKit
 import RealmSwift
@@ -40,7 +41,9 @@ class ViewController: UITableViewController {
     func setupUI() {
         title = "My Tasks"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(add))
         navigationItem.leftBarButtonItem = editButtonItem
     }
 
@@ -49,7 +52,10 @@ class ViewController: UITableViewController {
         let username = "billy"
         let password = "1234"
 
-        SyncUser.logIn(with: .usernamePassword(username: username, password: password, register: false), server: URL(string: "http://127.0.0.1:9080")!) { user, error in
+        SyncUser.logIn(with: .usernamePassword(username: username,
+                                               password: password,
+                                               register: false),
+                       server: URL(string: "http://127.0.0.1:9080")!) { user, error in
             guard let user = user else {
                 fatalError(String(describing: error))
             }
@@ -57,7 +63,8 @@ class ViewController: UITableViewController {
             DispatchQueue.main.async {
                 // Open Realm
                 let configuration = Realm.Configuration(
-                    syncConfiguration: SyncConfiguration(user: user, realmURL: URL(string: "realm://127.0.0.1:9080/~/realmtasks")!)
+                    syncConfiguration: SyncConfiguration(user: user,
+                                                         realmURL: URL(string: "realm://127.0.0.1:9080/~/realmtasks")!)
                 )
                 self.realm = try! Realm(configuration: configuration)
 
@@ -85,11 +92,13 @@ class ViewController: UITableViewController {
 
     // MARK: UITableView
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView,
+                            numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let item = items[indexPath.row]
         cell.textLabel?.text = item.text
@@ -97,13 +106,17 @@ class ViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            moveRowAt sourceIndexPath: IndexPath,
+                            to destinationIndexPath: IndexPath) {
         try! items.realm?.write {
             items.move(from: sourceIndexPath.row, to: destinationIndexPath.row)
         }
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCellEditingStyle,
+                            forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             try! realm.write {
                 let item = items[indexPath.row]
@@ -112,7 +125,8 @@ class ViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
         let item = items[indexPath.row]
         try! item.realm?.write {
             item.completed = !item.completed
