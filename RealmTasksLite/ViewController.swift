@@ -112,6 +112,23 @@ class ViewController: UITableViewController {
         }
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        try! item.realm?.write {
+            item.completed = !item.completed
+            let destinationIndexPath: IndexPath
+            if item.completed {
+                // move cell to bottom
+                destinationIndexPath = IndexPath(row: items.count - 1, section: 0)
+            } else {
+                // move cell just above the first completed item
+                let completedCount = items.filter("completed = true").count
+                destinationIndexPath = IndexPath(row: items.count - completedCount - 1, section: 0)
+            }
+            items.move(from: indexPath.row, to: destinationIndexPath.row)
+        }
+    }
+
     // MARK: Functions
 
     func add() {
