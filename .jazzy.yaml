@@ -1,0 +1,10 @@
+sdk: iphone
+author: William L. Marr III
+author_url: https://wlmiii.net
+module: RealmTasksLite
+module_version: 1.1
+swift_version: 3.0.2
+copyright: William L. Marr III
+github_url: https://github.com/billy70/realmtaskslite
+min_acl: internal
+skip_undocumented: Yes
